@@ -1,6 +1,7 @@
 package com.salvatore.pizzeria.service;
 
 import com.salvatore.pizzeria.persistence.entity.OrderEntity;
+import com.salvatore.pizzeria.persistence.projection.OrderSummary;
 import com.salvatore.pizzeria.persistence.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,8 +33,16 @@ public class OrderService {
         return this.orderRepository.findAllByDateAfter(today);
     }
 
+    public List<OrderEntity> getCustomerOrders(String idCustomer){
+        return this.orderRepository.getClientOrder(idCustomer);
+    }
+
     public List<OrderEntity> getOutSideOrders(){
         List<String> methods = Arrays.asList(DELIVERY, CARRYOUT);
         return this.orderRepository.findAllByMethodIn(methods);
+    }
+
+    public OrderSummary getSummary(int orderId){
+        return this.orderRepository.findSummary(orderId);
     }
 }

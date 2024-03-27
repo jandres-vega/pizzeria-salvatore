@@ -1,10 +1,12 @@
 package com.salvatore.pizzeria.web.controller;
 
 import com.salvatore.pizzeria.persistence.entity.OrderEntity;
+import com.salvatore.pizzeria.persistence.projection.OrderSummary;
 import com.salvatore.pizzeria.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,5 +34,13 @@ public class OrderController {
     @GetMapping("/outside")
     public ResponseEntity<List<OrderEntity>> getOutSideOrders(){
         return ResponseEntity.ok(this.orderService.getOutSideOrders());
+    }
+    @GetMapping("/customer/{id}")
+    public ResponseEntity<List<OrderEntity>> getCustomerOrders(@PathVariable String id){
+        return ResponseEntity.ok(this.orderService.getCustomerOrders(id));
+    }
+    @GetMapping("/summary/{id}")
+    public ResponseEntity<OrderSummary> getSummary(@PathVariable int id){
+        return ResponseEntity.ok(this.orderService.getSummary(id));
     }
 }

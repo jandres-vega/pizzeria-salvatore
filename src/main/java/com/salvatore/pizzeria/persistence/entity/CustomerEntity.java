@@ -12,9 +12,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CustomerEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_customer")
-    private Integer idCustomer;
+    private String idCustomer;
 
     @Column(nullable = false, unique = true, length = 60)
     private String name;

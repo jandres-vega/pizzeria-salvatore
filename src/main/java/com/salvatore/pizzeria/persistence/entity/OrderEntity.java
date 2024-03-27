@@ -21,7 +21,7 @@ public class OrderEntity {
     private Integer idOrder;
 
     @Column(name = "id_customer", nullable = false)
-    private Integer idCustomer;
+    private String idCustomer;
 
     @Column(nullable = false, columnDefinition = "DATETIME")
     private LocalDateTime date;
@@ -36,6 +36,7 @@ public class OrderEntity {
     private String additionalNotes;
 
     @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
+    @OrderBy("price ASC")
     private List<OrderItemEntity> items;
 
     @OneToOne(fetch = FetchType.LAZY)
