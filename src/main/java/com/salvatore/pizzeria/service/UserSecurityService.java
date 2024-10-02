@@ -36,27 +36,27 @@ public class UserSecurityService implements UserDetailsService {
                 .username(userEntity.getUsername())
                 .password(userEntity.getPassword())
 //                .roles(roles)
-                .authorities(this.grantedAuthorities(roles))
-                .accountLocked(userEntity.getLocked())
-                .disabled(userEntity.getDisabled())
+//                .authorities(this.grantedAuthorities(roles))
+//                .accountLocked(userEntity.getLocked())
+//                .disabled(userEntity.getDisabled())
                 .build();
     }
 
-    private String[] getAuthorities(String role){
-        if ("ADMIN".equals(role) || "CUSTOMER".equals(role)){
-            return new String[]{"random_order"};
-        }
-        return new String[]{};
-    }
-
-    private List<GrantedAuthority> grantedAuthorities(String[] roles){
-        List<GrantedAuthority> authorities = new ArrayList<>(roles.length);
-        for (String role: roles){
-            authorities.add(new SimpleGrantedAuthority("ROLE_" + role));
-            for(String authority: this.getAuthorities(role)){
-                authorities.add(new SimpleGrantedAuthority(authority));
-            }
-        }
-        return  authorities;
-    }
+//    private String[] getAuthorities(String role){
+//        if ("ADMIN".equals(role) || "CUSTOMER".equals(role)){
+//            return new String[]{"random_order"};
+//        }
+//        return new String[]{};
+//    }
+//
+//    private List<GrantedAuthority> grantedAuthorities(String[] roles){
+//        List<GrantedAuthority> authorities = new ArrayList<>(roles.length);
+//        for (String role: roles){
+//            authorities.add(new SimpleGrantedAuthority("ROLE_" + role));
+//            for(String authority: this.getAuthorities(role)){
+//                authorities.add(new SimpleGrantedAuthority(authority));
+//            }
+//        }
+//        return  authorities;
+//    }
 }

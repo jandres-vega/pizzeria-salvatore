@@ -34,6 +34,7 @@ public class JwtFilter extends OncePerRequestFilter {
         //1 validar que se un header Autorization valido
         String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
         if (authHeader == null || !authHeader.startsWith("Bearer")){
+            System.out.println("Authorization header not found");
             filterChain.doFilter(request, response);
             return;
         }
